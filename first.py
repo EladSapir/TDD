@@ -31,5 +31,5 @@ def func(stringA,num):
         stringB+=chr(res)
     return stringB
 
-print(check("ABc",func("ABc",27),27))
-print(func("ABc",27))
+print(check("SHAI",func("SHAI",1),1))
+print(func("SHAI",1))
