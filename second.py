@@ -60,25 +60,33 @@ def calcBMI(height, weight):
 # Step 3 - run the check function with the calculation function
 
 def main():
+    #Check for numbers that supposed to return true and value in the correct range
     res = calcBMI(1.80, 80)
     print(res)
     print(check(1.80, 80, res))
-
+    # Check for numbers that supposed to return true and value above the range
     res = calcBMI(1.70, 100)
     print(res)
     print(check(1.70, 100, res))
-
+    # Check for numbers that supposed to return true and value under the range
     res = calcBMI(1.80, 50)
     print(res)
     print(check(1.80, 50, res))
-
-    res = calcBMI(1.80, "lalalla")
+    # Check with negative height, supposed to return false and raise exception
+    print(check(-1.80, 50, res))
+    res = calcBMI(-1.80, 50)
     print(res)
-    print(check(1.80, "lalalla", res))
-
+    #check with negative weight, supposed to return false and raise exception
+    print(check(1.80, -50, res))
+    res = calcBMI(1.80, -50)
+    print(res)
+    #check with string for height, supposed to return false and raise exception
     res = calcBMI('lalala', 180)
     print(res)
     print(check('lalal', 180, res))
-
+    # check with string for weight, supposed to return false and raise exception
+    res = calcBMI(80,'lalala')
+    print(res)
+    print(check(80,'lalala',res))
 
 main()
