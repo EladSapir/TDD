@@ -1,6 +1,5 @@
 # Step 1 - write test
 
-
 def check(height, weight, res):
     """
     The function checks that all the input is int or float - nothing else will be accepted,
@@ -19,6 +18,8 @@ def check(height, weight, res):
         return False
     if height <= 0 or weight <= 0 or res[1] <= 0:
         return False
+    # if res[1]!= float(weight)/(float(height)**2):
+    #     return False
     if res[1] < 18.5:
         if not res[0] == "Your BMI means that you are underweight":
             return False
@@ -35,12 +36,12 @@ def check(height, weight, res):
 
 
 def calcBMI(height, weight):
-    """
-    The function gets the height and the weight and returns the calculated bmi
+    """ THROWS VALUE ERROR EXCEPTION
+    The function gets the height and the weight and returns the calculated BMI.
     The function checks if the inputs are numbers and positive.
-    :param height: input - the height of the person
-    :param weight: input - the weight of the person
-    :return: tuple of the bmi and sentence matching the result
+    :param height: input - the height of the person.
+    :param weight: input - the weight of the person.
+    :return: tuple of the BMI and sentence matching the result.
     """
     if (isinstance(height, int) or isinstance(height, float)) and isinstance(weight, int) or isinstance(weight, float):
         if height > 0 and weight > 0:
@@ -52,41 +53,48 @@ def calcBMI(height, weight):
             else:
                 return ("Your BMI means that your weight is correct", res)
         else:
-            raise ValueError("-----The height/weight has to be positive-----")
+            raise ValueError("-------The height/weight has to be positive-------")
     else:
-        raise ValueError("-----The height/weight has to be number-----")
+        raise ValueError("-------The height/weight has to be number-------")
 
 
 # Step 3 - run the check function with the calculation function
 
+
+def runCheck(height,weight,index):
+    try:
+        print("\nTest number ",index,": ")
+        res=calcBMI(height,weight)
+        print(res)
+        print(check(height,weight,res))
+    except ValueError as e:
+        print(e)
 def main():
+    i=1
     #Check for numbers that supposed to return true and value in the correct range
-    res = calcBMI(1.80, 80)
-    print(res)
-    print(check(1.80, 80, res))
+    runCheck(1.80,80,i)
+    i+=1
     # Check for numbers that supposed to return true and value above the range
-    res = calcBMI(1.70, 100)
-    print(res)
-    print(check(1.70, 100, res))
+    runCheck(1.70,100,i)
+    i += 1
     # Check for numbers that supposed to return true and value under the range
-    res = calcBMI(1.80, 50)
-    print(res)
-    print(check(1.80, 50, res))
+    runCheck(1.80, 50,i)
+    i += 1
     # Check with negative height, supposed to return false and raise exception
-    print(check(-1.80, 50, res))
-    res = calcBMI(-1.80, 50)
-    print(res)
-    #check with negative weight, supposed to return false and raise exception
-    print(check(1.80, -50, res))
-    res = calcBMI(1.80, -50)
-    print(res)
-    #check with string for height, supposed to return false and raise exception
-    res = calcBMI('lalala', 180)
-    print(res)
-    print(check('lalal', 180, res))
-    # check with string for weight, supposed to return false and raise exception
-    res = calcBMI(80,'lalala')
-    print(res)
-    print(check(80,'lalala',res))
+    runCheck(-1.80,50,i)
+    i += 1
+    #Check with height=0, supposed raise exception
+    runCheck(0,80,i)
+    i += 1
+    #check with negative weight, supposed to  raise exception
+    runCheck(1.80,-50,i)
+    i += 1
+    #check with string for height, supposed to raise exception
+    runCheck('lalala',80,i)
+    i += 1
+    # check with string for weight, supposed to raise exception
+    runCheck(1.80,'lalala',i)
+    i += 1
+    #check if the result is right!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 main()
