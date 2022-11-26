@@ -18,15 +18,15 @@ def check(height, weight, res):
         return False
     if height <= 0 or weight <= 0 or res[1] <= 0:
         return False
-    # if res[1]!= float(weight)/(float(height)**2):
-    #     return False
+    if res[1] != float(weight) / (float(height) ** 2):
+        return False
     if res[1] < 18.5:
         if not res[0] == "Your BMI means that you are underweight":
             return False
     if res[1] > 25:
         if not res[0] == "Your BMI means that you are overweight":
             return False
-    if res[1] < 25 and res[1] > 18:
+    if 18 < res[1] < 25:
         if not res[0] == "Your BMI means that your weight is correct":
             return False
     return True
@@ -61,40 +61,44 @@ def calcBMI(height, weight):
 # Step 3 - run the check function with the calculation function
 
 
-def runCheck(height,weight,index):
+def runCheck(height, weight, index):
     try:
-        print("\nTest number ",index,": ")
-        res=calcBMI(height,weight)
+        print("\nTest number ", index, ": ")
+        res = calcBMI(height, weight)
         print(res)
-        print(check(height,weight,res))
+        print(check(height, weight, res))
     except ValueError as e:
         print(e)
+
+
 def main():
-    i=1
-    #Check for numbers that supposed to return true and value in the correct range
-    runCheck(1.80,80,i)
-    i+=1
+    i = 1
+    # Check for numbers that supposed to return true and value in the correct range
+    runCheck(1.80, 80, i)
+    i += 1
     # Check for numbers that supposed to return true and value above the range
-    runCheck(1.70,100,i)
+    runCheck(1.70, 100, i)
     i += 1
     # Check for numbers that supposed to return true and value under the range
-    runCheck(1.80, 50,i)
+    runCheck(1.80, 50, i)
     i += 1
     # Check with negative height, supposed to return false and raise exception
-    runCheck(-1.80,50,i)
+    runCheck(-1.80, 50, i)
     i += 1
-    #Check with height=0, supposed raise exception
-    runCheck(0,80,i)
+    # Check with height=0, supposed raise exception
+    runCheck(0, 80, i)
     i += 1
-    #check with negative weight, supposed to  raise exception
-    runCheck(1.80,-50,i)
+    # check with negative weight, supposed to  raise exception
+    runCheck(1.80, -50, i)
     i += 1
-    #check with string for height, supposed to raise exception
-    runCheck('lalala',80,i)
+    # check with string for height, supposed to raise exception
+    runCheck('lalala', 80, i)
     i += 1
     # check with string for weight, supposed to raise exception
-    runCheck(1.80,'lalala',i)
+    runCheck(1.80, 'lalala', i)
     i += 1
-    #check if the result is right!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # check if the result is right!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
 main()
+#After running all the checks, no changes needed.
